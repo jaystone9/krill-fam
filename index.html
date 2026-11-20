@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Krill Fam</title>
 <meta name="theme-color" content="#0B1730">
-<meta name="description" content="Seven divers. Seven prompts a day. See who's sinking deepest.">
+<meta name="description" content="Eight divers. Seven prompts a day. See who's sinking deepest.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Krill Fam">
 <meta property="og:title" content="Krill Fam">
-<meta property="og:description" content="Seven divers. Seven prompts a day. See who's sinking deepest.">
+<meta property="og:description" content="Eight divers. Seven prompts a day. See who's sinking deepest.">
 <meta property="og:url" content="https://jaystone9.github.io/krill-fam/">
 <meta property="og:image" content="https://jaystone9.github.io/krill-fam/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Silkscreen:wght@700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style id="css">
 /* Layout idea: a dive-computer readout. No cards: sections sit on the water, split by letterspaced labels and dashed rules. Hard edges, pixel numerals, one hot accent. Single theme by choice. */
 :root{
@@ -127,6 +127,12 @@ td.l{padding-right:10px;white-space:nowrap}
 .tag{font-size:10px;border:1px solid var(--rule);padding:1px 7px;color:var(--cyan);white-space:nowrap;text-transform:uppercase;letter-spacing:.1em}
 ol.prompts{margin:0;padding-left:26px;display:flex;flex-direction:column;gap:8px}
 ol.prompts li::marker{color:var(--dim)}
+.answers{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.aq{border-top:1px dashed var(--line);padding-top:10px}
+.aqt{font-weight:600;margin-bottom:6px}
+.ar{display:grid;grid-template-columns:78px 1fr auto 28px;gap:8px;align-items:center;padding:3px 0}
+.ar .aa{overflow-wrap:anywhere}
+.ar .num{text-align:right}
 .strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
 .strip{position:relative}
 .strip button{flex:none;min-width:52px;padding:7px 8px;text-align:center;font:700 16px var(--display);letter-spacing:0}
@@ -196,15 +202,27 @@ td.num{white-space:nowrap}
 /* legible numerals */
 .big,.rank,.lab i,.grade b,.duel .v,.strip button,.award .who,.lbrow.top b{font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .big small{letter-spacing:.12em;text-transform:uppercase}
+
+/* game toggle: real Krillion and our own krillst0ne are tallied separately */
+.games{display:flex;gap:0;border:2px solid var(--rule);width:max-content;max-width:100%}
+.games button{font:600 12px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;padding:11px 16px;background:transparent;color:var(--dim);border:0;cursor:pointer}
+.games button.on{background:var(--pink);color:var(--abyss)}
+.games button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.playlink{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+body.ks{--sea:#0c3340;--abyss:#061016;--line:#1f4450;--rule:#2f6a78;--ink:#e9f5f2;--dim:#86a9ad;--pink:#ffb454;--cyan:#7df9c8;--gold:#ffcf3a;
+  background:linear-gradient(180deg,#2b2a52 0,#b65a7c 120px,#ffb37a 210px,#1f7a8c 212px,#0c3340 620px,#061016 1300px) #061016;background-repeat:no-repeat}
+body.ks h1{font-family:"Silkscreen",var(--pixel);text-transform:none;font-size:clamp(34px,10.5vw,72px);letter-spacing:.02em;text-shadow:3px 3px 0 #0a2a33}
+body.ks h1 em{font-style:normal;color:var(--pink)}
+body.ks .head p{color:#fff}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <div id="toast" role="status"></div>
-<script id="state" type="application/json">{"rev":21,"emo":{},"players":[{"id":"jay","name":"Jay","short":"Jay","e":"🦈","img":"faces/jay.jpg","c":"#FF7A66"},{"id":"nicole","name":"Nicole","short":"Nicole","e":"🐙","img":"faces/nicole.jpg","c":"#B79CFF"},{"id":"ben","name":"Ben","short":"Ben","e":"🐢","img":"faces/ben.jpg","c":"#B6E36A"},{"id":"max","name":"Max","short":"Max","e":"🐡","img":"faces/max2.jpg","c":"#FFC24B"},{"id":"marti","name":"Marti","short":"Marti","e":"🦀","img":"faces/marti.jpg","c":"#FF8FCB"},{"id":"amir","name":"Amir","short":"Amir","e":"🐬","img":"faces/amir3.jpg","c":"#6FB6FF"},{"id":"ruby","name":"Ruby","short":"Ruby","e":"🦭","img":"faces/ruby.jpg","c":"#4FE0D0"}],"days":{"2026-11-11":{"n":119,"prompts":[{"t":"Name a country where at least 50% of people speak English","g":"places"},{"t":"Name a bodily function or biological process","g":"science"},{"t":"Name a one-word animal that starts with T","g":"nature"},{"t":"Name something that has a needle","g":"life"},{"t":"Name an original movie or show from Netflix, Prime Video, etc.","g":"screen"},{"t":"Name a named object in space that's bigger than Earth","g":"science"},{"t":"Name a character from Mario, Zelda, Donkey Kong, etc.","g":"screen"}],"scores":{"amir":{"q":[10,85,60,30,30,10,30]},"jay":{"q":[30,60,30,30,60,10,30]},"ben":{"q":[30,30,60,60,10,10,30]},"max":{"q":[10,0,85,30,0,60,30]},"nicole":{"q":[10,60,10,10,0,30,30]},"marti":{"q":[30,60,10,0,60,10,85]}}},"2026-11-12":{"n":120,"scores":{"jay":{"q":[30,60,30,60,60,30,60]},"marti":{"q":[30,60,30,60,60,30,10]},"nicole":{"q":[30,85,10,30,60,30,30]},"max":{"q":[0,10,30,85,60,60,10]},"ben":{"q":[30,30,30,30,10,60,60]},"amir":{"q":[60,30,30,10,10,30,30]},"ruby":{"q":[10,10,30,85,30,10,10]}},"prompts":[{"t":"Name something you can see in the sky (no living or manmade things)","g":"science"},{"t":"Name a material or product that comes from animals","g":"nature"},{"t":"Name a vegetable smaller than an onion (culinary vegetables)","g":"food"},{"t":"Name a TV game show","g":"screen"},{"t":"Name a dance move (named moves)","g":"music"},{"t":"Name a type of injury (like a sprain, not a sprained ankle)","g":"body"},{"t":"Name a chocolate that has caramel in it","g":"food"}],"closed":true},"2026-11-13":{"n":121,"scores":{"nicole":{"q":[30,85,30,30,30,60,30]},"marti":{"q":[10,30,10,30,30,60,60]},"jay":{"q":[30,30,85,10,10,30,30]},"max":{"q":[60,30,0,60,30,30,10]},"amir":{"q":[30,30,30,60,10,10,30]},"ben":{"q":[0,10,0,30,30,60,10]}},"prompts":[{"t":"Name a video game you can play on PS5, Xbox Series X/S, etc.","g":"screen"},{"t":"Name a country that has been colonized by Spain or Portugal","g":"history"},{"t":"Name a chemical element that makes up the human body","g":"science"},{"t":"Name an invention that existed before 1500","g":"history"},{"t":"Name anyone who has acted in an MCU film","g":"screen"},{"t":"Name a book that has been adapted into a movie","g":"screen"},{"t":"Name a feature in TikTok","g":"brands"}],"closed":true},"2026-11-14":{"n":122,"scores":{"ben":{"q":[85,10,30,60,85,10,30]},"jay":{"q":[60,60,30,30,0,60,60]},"nicole":{"q":[10,10,30,85,30,10,60]},"ruby":{"q":[60,10,30,10,30,10,30]},"max":{"q":[10,10,10,30,60,0,10]}},"prompts":[{"t":"Name a billionaire","g":"life"},{"t":"Name an extinct animal that isn't an insect","g":"nature"},{"t":"Name a living animal that moves on 2 feet","g":"nature"},{"t":"Name a ball sport where you don't score by getting the ball in a goal","g":"sports"},{"t":"Name any island (must be inhabited)","g":"places"},{"t":"Name a fictional way to travel","g":"screen"},{"t":"Name any national government agency","g":"life"}]},"2026-11-15":{"n":123,"scores":{"ben":{"q":[60,10,85,60,30,30,30]},"amir":{"q":[30,60,30,60,10,10,60]},"nicole":{"q":[60,60,30,0,30,0,60]},"max":{"q":[60,30,60,30,10,10,30]},"jay":{"q":[60,10,0,30,30,0,60]},"marti":{"q":[10,10,60,10,30,30,30]},"ruby":{"q":[10,10,30,60,30,10,30]}},"prompts":[{"t":"Name a movie involving time travel","g":"screen"},{"t":"Name a country where French is an official language","g":"places"},{"t":"Name a brand with an animal in its logo","g":"brands"},{"t":"Name a college or university major","g":"life"},{"t":"Name something you light with a match or lighter","g":"life"},{"t":"Name a dish that is or includes deep-fried chicken","g":"food"},{"t":"Name a job where people wear a uniform","g":"life"}]},"2026-11-16":{"n":124,"scores":{"marti":{"q":[30,0,85,60,60,30,30]},"jay":{"q":[30,60,60,60,10,60,10]},"nicole":{"q":[60,10,10,60,10,10,85]},"max":{"q":[30,30,30,60,0,10,60]},"ben":{"q":[30,60,10,60,10,10,30]},"amir":{"q":[30,10,30,60,0,30,30]},"ruby":{"q":[10,10,60,60,10,10,30]}},"prompts":[{"t":"Name a country with the letter B in its name","g":"places"},{"t":"Name a fictional weapon","g":"screen"},{"t":"Name a job focused on repairing physical things","g":"life"},{"t":"Name an author who has a book that has sold over a million copies","g":"screen"},{"t":"Name a sport involving a board (no board games)","g":"sports"},{"t":"Name a chemical element whose name has 6 or fewer letters","g":"science"},{"t":"Name a part of the body above the waist","g":"body"}]},"2026-11-17":{"n":125,"scores":{"jay":{"q":[30,30,30,60,60,60,60]},"marti":{"q":[10,85,30,10,85,30,85]},"nicole":{"q":[30,60,10,60,60,60,0]},"ben":{"q":[30,0,30,60,60,30,60]},"amir":{"q":[10,10,30,60,60,30,0]},"max":{"q":[30,0,30,60,60,10,0]}},"prompts":[{"t":"Name a movie where the main character is a talking animal","g":"screen"},{"t":"Name a one-word food or drink that ends in O","g":"food"},{"t":"Name a one-word animal whose name is 7 or more letters","g":"nature"},{"t":"Name a retired player from the NBA, Premier League, etc.","g":"sports"},{"t":"Name a city ending in -ville, -burg or -burgh","g":"places"},{"t":"Name a fruit or vegetable that's white on the inside","g":"food"},{"t":"Name a playable character from Valorant, Overwatch, etc.","g":"screen"}],"closed":true},"2026-11-18":{"n":126,"scores":{"jay":{"q":[30,30,60,85,10,60,30]},"marti":{"q":[30,10,60,85,60,30,0]},"ben":{"q":[30,85,60,85,30,30,10]},"max":{"q":[60,85,30,85,10,0,60]},"nicole":{"q":[85,0,30,85,30,10,30]},"amir":{"q":[10,60,30,30,30,30,0]}},"prompts":[{"t":"Name a fictional food or drink","g":"screen"},{"t":"Name a website or app designed for learning","g":"brands"},{"t":"Name a sport where competitors wear helmets","g":"sports"},{"t":"Name a city whose name starts with D","g":"places"},{"t":"Name a fruit or vegetable that starts with a vowel","g":"food"},{"t":"Name any athlete who competed at the 2024 Summer Olympics","g":"sports"},{"t":"Name a real-life language that ends in -an","g":"words"}],"closed":true}}}</script>
+<script id="state" type="application/json">{"rev":22,"emo":{},"players":[{"id":"jay","name":"Jay","short":"Jay","e":"🦈","img":"faces/jay.jpg","c":"#FF7A66"},{"id":"nicole","name":"Nicole","short":"Nicole","e":"🐙","img":"faces/nicole.jpg","c":"#B79CFF"},{"id":"ben","name":"Ben","short":"Ben","e":"🐢","img":"faces/ben.jpg","c":"#B6E36A"},{"id":"max","name":"Max","short":"Max","e":"🐡","img":"faces/max2.jpg","c":"#FFC24B"},{"id":"marti","name":"Marti","short":"Marti","e":"🦀","img":"faces/marti.jpg","c":"#FF8FCB"},{"id":"amir","name":"Amir","short":"Amir","e":"🐬","img":"faces/amir3.jpg","c":"#6FB6FF"},{"id":"ruby","name":"Ruby","short":"Ruby","e":"🦭","img":"faces/ruby.jpg","c":"#4FE0D0"},{"id":"larry","name":"Larry","short":"Larry","e":"🦞","c":"#FF5A5A"}],"days":{"2026-11-11":{"n":119,"prompts":[{"t":"Name a country where at least 50% of people speak English","g":"places"},{"t":"Name a bodily function or biological process","g":"science"},{"t":"Name a one-word animal that starts with T","g":"nature"},{"t":"Name something that has a needle","g":"life"},{"t":"Name an original movie or show from Netflix, Prime Video, etc.","g":"screen"},{"t":"Name a named object in space that's bigger than Earth","g":"science"},{"t":"Name a character from Mario, Zelda, Donkey Kong, etc.","g":"screen"}],"scores":{"amir":{"q":[10,85,60,30,30,10,30]},"jay":{"q":[30,60,30,30,60,10,30]},"ben":{"q":[30,30,60,60,10,10,30]},"max":{"q":[10,0,85,30,0,60,30]},"nicole":{"q":[10,60,10,10,0,30,30]},"marti":{"q":[30,60,10,0,60,10,85]}}},"2026-11-12":{"n":120,"scores":{"jay":{"q":[30,60,30,60,60,30,60]},"marti":{"q":[30,60,30,60,60,30,10]},"nicole":{"q":[30,85,10,30,60,30,30]},"max":{"q":[0,10,30,85,60,60,10]},"ben":{"q":[30,30,30,30,10,60,60]},"amir":{"q":[60,30,30,10,10,30,30]},"ruby":{"q":[10,10,30,85,30,10,10]}},"prompts":[{"t":"Name something you can see in the sky (no living or manmade things)","g":"science"},{"t":"Name a material or product that comes from animals","g":"nature"},{"t":"Name a vegetable smaller than an onion (culinary vegetables)","g":"food"},{"t":"Name a TV game show","g":"screen"},{"t":"Name a dance move (named moves)","g":"music"},{"t":"Name a type of injury (like a sprain, not a sprained ankle)","g":"body"},{"t":"Name a chocolate that has caramel in it","g":"food"}],"closed":true},"2026-11-13":{"n":121,"scores":{"nicole":{"q":[30,85,30,30,30,60,30]},"marti":{"q":[10,30,10,30,30,60,60]},"jay":{"q":[30,30,85,10,10,30,30]},"max":{"q":[60,30,0,60,30,30,10]},"amir":{"q":[30,30,30,60,10,10,30]},"ben":{"q":[0,10,0,30,30,60,10]}},"prompts":[{"t":"Name a video game you can play on PS5, Xbox Series X/S, etc.","g":"screen"},{"t":"Name a country that has been colonized by Spain or Portugal","g":"history"},{"t":"Name a chemical element that makes up the human body","g":"science"},{"t":"Name an invention that existed before 1500","g":"history"},{"t":"Name anyone who has acted in an MCU film","g":"screen"},{"t":"Name a book that has been adapted into a movie","g":"screen"},{"t":"Name a feature in TikTok","g":"brands"}],"closed":true},"2026-11-14":{"n":122,"scores":{"ben":{"q":[85,10,30,60,85,10,30]},"jay":{"q":[60,60,30,30,0,60,60]},"nicole":{"q":[10,10,30,85,30,10,60]},"ruby":{"q":[60,10,30,10,30,10,30]},"max":{"q":[10,10,10,30,60,0,10]}},"prompts":[{"t":"Name a billionaire","g":"life"},{"t":"Name an extinct animal that isn't an insect","g":"nature"},{"t":"Name a living animal that moves on 2 feet","g":"nature"},{"t":"Name a ball sport where you don't score by getting the ball in a goal","g":"sports"},{"t":"Name any island (must be inhabited)","g":"places"},{"t":"Name a fictional way to travel","g":"screen"},{"t":"Name any national government agency","g":"life"}]},"2026-11-15":{"n":123,"scores":{"ben":{"q":[60,10,85,60,30,30,30]},"amir":{"q":[30,60,30,60,10,10,60]},"nicole":{"q":[60,60,30,0,30,0,60]},"max":{"q":[60,30,60,30,10,10,30]},"jay":{"q":[60,10,0,30,30,0,60]},"marti":{"q":[10,10,60,10,30,30,30]},"ruby":{"q":[10,10,30,60,30,10,30]}},"prompts":[{"t":"Name a movie involving time travel","g":"screen"},{"t":"Name a country where French is an official language","g":"places"},{"t":"Name a brand with an animal in its logo","g":"brands"},{"t":"Name a college or university major","g":"life"},{"t":"Name something you light with a match or lighter","g":"life"},{"t":"Name a dish that is or includes deep-fried chicken","g":"food"},{"t":"Name a job where people wear a uniform","g":"life"}]},"2026-11-16":{"n":124,"scores":{"marti":{"q":[30,0,85,60,60,30,30]},"jay":{"q":[30,60,60,60,10,60,10]},"nicole":{"q":[60,10,10,60,10,10,85]},"max":{"q":[30,30,30,60,0,10,60]},"ben":{"q":[30,60,10,60,10,10,30]},"amir":{"q":[30,10,30,60,0,30,30]},"ruby":{"q":[10,10,60,60,10,10,30]}},"prompts":[{"t":"Name a country with the letter B in its name","g":"places"},{"t":"Name a fictional weapon","g":"screen"},{"t":"Name a job focused on repairing physical things","g":"life"},{"t":"Name an author who has a book that has sold over a million copies","g":"screen"},{"t":"Name a sport involving a board (no board games)","g":"sports"},{"t":"Name a chemical element whose name has 6 or fewer letters","g":"science"},{"t":"Name a part of the body above the waist","g":"body"}]},"2026-11-17":{"n":125,"scores":{"jay":{"q":[30,30,30,60,60,60,60]},"marti":{"q":[10,85,30,10,85,30,85]},"nicole":{"q":[30,60,10,60,60,60,0]},"ben":{"q":[30,0,30,60,60,30,60]},"amir":{"q":[10,10,30,60,60,30,0]},"max":{"q":[30,0,30,60,60,10,0]}},"prompts":[{"t":"Name a movie where the main character is a talking animal","g":"screen"},{"t":"Name a one-word food or drink that ends in O","g":"food"},{"t":"Name a one-word animal whose name is 7 or more letters","g":"nature"},{"t":"Name a retired player from the NBA, Premier League, etc.","g":"sports"},{"t":"Name a city ending in -ville, -burg or -burgh","g":"places"},{"t":"Name a fruit or vegetable that's white on the inside","g":"food"},{"t":"Name a playable character from Valorant, Overwatch, etc.","g":"screen"}],"closed":true},"2026-11-18":{"n":126,"scores":{"jay":{"q":[30,30,60,85,10,60,30]},"marti":{"q":[30,10,60,85,60,30,0]},"ben":{"q":[30,85,60,85,30,30,10]},"max":{"q":[60,85,30,85,10,0,60]},"nicole":{"q":[85,0,30,85,30,10,30]},"amir":{"q":[10,60,30,30,30,30,0]}},"prompts":[{"t":"Name a fictional food or drink","g":"screen"},{"t":"Name a website or app designed for learning","g":"brands"},{"t":"Name a sport where competitors wear helmets","g":"sports"},{"t":"Name a city whose name starts with D","g":"places"},{"t":"Name a fruit or vegetable that starts with a vowel","g":"food"},{"t":"Name any athlete who competed at the 2024 Summer Olympics","g":"sports"},{"t":"Name a real-life language that ends in -an","g":"words"}],"closed":true}}}</script>
 <script id="js">
 (()=>{"use strict";
-const TIERS=[{p:0,n:'Miss',e:'⬛',c:'#5A6C96'},{p:10,n:'Plankton',e:'🫧',c:'#B9C9E4'},{p:15,n:'Too Clever',e:'',t:'TC',c:'#FF9F45'},{p:30,n:'Schooler',e:'🐟',c:'#4FD8F0'},{p:60,n:'Rare',e:'🦑',c:'#FF4D5E'},{p:85,n:'Deep Cut',e:'🏮',c:'#9B8CFF'},{p:100,n:'One in a Krillion',e:'🦐',t:'K★',c:'#FFD23F'}];
+const TIERS=[{p:0,n:'Miss',e:'⬛',c:'#5A6C96'},{p:10,n:'Plankton',e:'🫧',c:'#B9C9E4'},{p:15,n:'Too Clever',e:'🤡',t:'TC',c:'#FF9F45'},{p:30,n:'Schooler',e:'🐟',c:'#4FD8F0'},{p:60,n:'Rare',e:'🦑',c:'#FF4D5E'},{p:85,n:'Deep Cut',e:'🏮',c:'#9B8CFF'},{p:100,n:'One in a Krillion',e:'🦐',t:'K★',c:'#FFD23F'}];
 const TP=Object.fromEntries(TIERS.map(t=>[t.p,t]));
 const EMO={'🫧':10,'🐟':30,'🦑':60,'🏮':85,'⬛':0,'⬜':0,'❌':0};
 const GEN={food:['Food & drink','Food'],places:['Places & geography','Places'],nature:['Animals & nature','Nature'],sports:['Sports & games','Sports'],screen:['Movies, TV & pop culture','Pop culture'],music:['Music','Music'],brands:['Brands & stuff','Brands'],words:['Words & names','Words'],body:['Body & style','Style'],life:['Everyday life','Everyday'],history:['History & holidays','History'],science:['Science & tech','Science']};
@@ -222,9 +240,10 @@ const dayName=d=>new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{weekday:'s
 
 let state=JSON.parse(document.getElementById('state').textContent);
 try{const L=JSON.parse(localStorage.getItem('krill-fam')||'null');if(L&&L.rev>state.rev)state=L}catch(e){}
-let ui={metric:'avg',range:'all'};
-try{Object.assign(ui,JSON.parse(sessionStorage.getItem('krill-fam-ui')||'{}'))}catch(e){}
-const keepUi=()=>{try{sessionStorage.setItem('krill-fam-ui',JSON.stringify(ui))}catch(e){}};
+const RDAYS=state.days,KDAYS={};
+let ui={metric:'avg',range:'all',game:'krillion'};
+try{Object.assign(ui,JSON.parse(sessionStorage.getItem('krill-fam-ui2')||'{}'))}catch(e){}
+const keepUi=()=>{try{sessionStorage.setItem('krill-fam-ui2',JSON.stringify(ui))}catch(e){}};
 let artifact=null, parsed=[], owner=false;
 (function hook(tries){if(window.claude&&window.claude.use){window.claude.use('artifact').then(a=>{artifact=a}).catch(()=>{});window.claude.use('user').then(u=>u?u.isOwner():false).then(v=>{if(v){owner=true;render()}}).catch(()=>{})}else if(tries>0)setTimeout(()=>hook(tries-1),500)})(20);
 
@@ -298,7 +317,7 @@ function sea(c){
   const mx=Math.max(...c.list.map(s=>s.avg)),topv=Math.min(700,Math.max(250,Math.ceil(mx*1.25/50)*50)),step=topv>400?100:50;
   let h='';for(let v=0;v<=topv;v+=step)h+=`<div class="tick" style="top:${v/topv*100}%"><span>${v?fm(v)+' pts':'surface'}</span></div>`;
   for(const [v,l,p] of [[70,'all 🫧',10],[210,'all 🐟',30],[420,'all 🦑',60],[595,'all 🏮',85]])if(v<=topv)h+=`<div class="ref" style="top:${v/topv*100}%;--c:${TP[p].c}"><span>${l}</span></div>`;
-  h+='<div class="cols">'+state.players.map(p=>{const s=c.P[p.id];if(!s.n)return `<div class="col" style="--c:${p.c}"><div class="diver" style="top:0;opacity:.45">${av(p)}</div><div class="lab"><b>${esc(p.short)}</b><i>deck</i></div></div>`;
+  h+='<div class="cols">'+state.players.filter(p=>ui.game!=='krillst0ne'||c.P[p.id].n).map(p=>{const s=c.P[p.id];if(!s.n)return `<div class="col" style="--c:${p.c}"><div class="diver" style="top:0;opacity:.45">${av(p)}</div><div class="lab"><b>${esc(p.short)}</b><i>deck</i></div></div>`;
     const y=s.avg/topv*100;return `<div class="col" style="--c:${p.c}"><div class="rope" style="height:${y}%"></div><div class="diver" style="top:${y}%">${av(p)}</div><div class="lab"><b>${esc(p.short)}</b><i data-count="${Math.round(s.avg)}">${fm(s.avg)}</i></div></div>`}).join('')+'</div>';
   let bub='';for(let i=0;i<18;i++){const r=(i*7919%97)/97,r2=(i*104729%89)/89;bub+=`<span class="bub" style="left:${(4+r*92).toFixed(1)}%;--s:${2+Math.round(r2*4)}px;--d:${(7+r2*9).toFixed(1)}s;--dl:-${(r*14).toFixed(1)}s"></span>`}
   return `<div class="sea">${bub}<div class="water">${h}</div></div>`;
@@ -332,12 +351,20 @@ function vLog(c){
   if(!c.dates.includes(ui.day))ui.day=c.dates[c.dates.length-1];
   const d=ui.day,day=state.days[d],rows=state.players.map(p=>({p,e:day.scores[p.id],t:tot(day.scores[p.id])})).sort((a,b)=>(b.t??-1)-(a.t??-1)),best=rows[0].t;
   const pr=[0,1,2,3,4,5,6].map(i=>{const x=(day.prompts||[])[i]||{},vs=rows.filter(r=>r.e&&r.e.q).map(r=>r.e.q[i]);return {t:x.t,g:x.g,avg:vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null}});
-  return `<section class="panel"><div class="row between"><h2>Dive log</h2><span class="dim sm">Krillion #${day.n||dateToNum(d)} · ${dayName(d)}${d===c.open?' · still open, no winner yet':''}</span></div>
+  return `<section class="panel"><div class="row between"><h2>Dive log</h2><span class="dim sm">${day.k?'krillst0ne #'+day.k:'Krillion #'+(day.n||dateToNum(d))} · ${dayName(d)}${d===c.open?' · still open, no winner yet':''}</span></div>
   <div class="strip">${c.dates.map(x=>`<button data-day="${x}" class="${x===d?'on':''}">${+x.slice(5,7)}/${+x.slice(8)}</button>`).join('')}</div>
   <div class="scroll"><table><tr><th class="l">Diver</th>${[1,2,3,4,5,6,7].map(i=>`<th>Q${i}</th>`).join('')}<th>Score</th></tr>
   ${rows.map(r=>`<tr><td class="l"><span class="row" style="flex-wrap:nowrap;gap:8px">${av(r.p,1)}<span class="nm">${esc(r.p.short)}</span>${r.t!=null&&r.t===best&&d!==c.open?' <span title="Won the day">👑</span>':''}</span></td>${r.t==null?'<td colspan="7" class="dim sm">sat this one out</td><td></td>':(r.e.q?r.e.q.map(chip).join('</td><td>').replace(/^/,'<td>')+'</td>':'<td colspan="7" class="dim sm">total only</td>')+`<td class="num" title="${bearing(r.t)}"><b>${fm(r.t)}</b></td>`}</tr>`).join('')}
   <tr><td class="l dim sm">Group avg</td>${pr.map(x=>`<td class="dim sm num">${x.avg==null?'':x.avg.toFixed(0)}</td>`).join('')}<td></td></tr></table></div>
-  ${pr.some(x=>x.t)?`<ol class="prompts">${pr.map(x=>`<li>${x.t?esc(x.t):'<span class="dim">not entered</span>'} ${x.g?`<span class="tag">${GEN[x.g][1]}</span>`:''}</li>`).join('')}</ol>`:`<p class="dim sm">Prompts for this day are not entered yet.</p>`}</section>`;
+  ${pr.some(x=>x.t)?`<ol class="prompts">${pr.map(x=>`<li>${x.t?esc(x.t):'<span class="dim">not entered</span>'} ${x.g?`<span class="tag">${GEN[x.g][1]}</span>`:''}</li>`).join('')}</ol>`:`<p class="dim sm">${day.live?'Prompts stay hidden while this dive is still open.':'Prompts for this day are not entered yet.'}</p>`}${vAns(d,day,rows)}</section>`;
+}
+/* krillst0ne only: what each diver actually typed, prompt by prompt. While a dive is still open it sits behind a tap so nobody is spoiled by accident. */
+function vAns(d,day,rows){
+  if(!day.k)return '';const who=rows.filter(r=>r.e&&r.e.a);if(!who.length)return '';
+  const open=day.live&&!(ui.spoil&&ui.spoil[d]);
+  if(open)return `<h3>Everyone's answers</h3><p class="dim sm">Today's dive is still open. Showing the answers also shows the prompts, so only look if you have already played.</p><div class="row"><button class="go" data-act="spoil" data-d="${d}">I've played · show answers</button></div>`;
+  const pr=day.prompts&&day.prompts.length?day.prompts:(day.kp||[]);
+  return `<h3>Everyone's answers</h3><div class="answers">${[0,1,2,3,4,5,6].map(i=>`<div class="aq"><div class="aqt"><span class="dim num">${i+1}</span> ${pr[i]&&pr[i].t?esc(pr[i].t):'Prompt '+(i+1)}</div>${who.map(r=>{const a=(r.e.a[i]||'').trim(),p=r.e.q[i];return `<div class="ar"><span class="nm">${esc(r.p.short)}</span><span class="aa ${a?'':'dim'}">${a?esc(a):'no answer'}</span>${chip(p)}<span class="num dim sm">${p}</span></div>`}).join('')}</div>`).join('')}</div>`;
 }
 function vDuel(c){
   const ids=c.list.map(s=>s.p.id);if(ids.length<2)return `<section class="panel"><h2>Head to head</h2><p class="dim">Needs at least two divers this month.</p></section>`;
@@ -359,7 +386,7 @@ function vEnter(){
   return `<section class="panel"><h2>Paste from the group chat</h2><p class="dim sm">Paste everyone's shares in one go, a name on the line above each. The Krillion number sets the date, and the emoji row gives the per-prompt scores (🫧 10 · 🐟 30 · 🦑 60 · 🏮 85 · ⬛ 0). Several days at once is fine.</p>
   <textarea id="paste" placeholder="Jay&#10;Krillion #117 🦐&#10;200&#10;&#10;🦑🫧🐟🦑🫧🐟⬛"></textarea><div id="paste-pv" class="sm dim"></div><div class="row"><button class="go" data-act="import">Save pasted scores</button></div></section>
   <section class="panel"><div class="row between"><h2>Edit a day</h2><input type="date" id="e-date" value="${d}" aria-label="Day to edit"></div>
-  <h3>Prompts and genres <span class="dim sm">· Krillion #${day.n||dateToNum(d)}</span></h3>
+  <h3>Prompts and genres <span class="dim sm">· ${day.k?'krillst0ne #'+day.k:'Krillion #'+(day.n||dateToNum(d))}</span></h3>
   ${[0,1,2,3,4,5,6].map(i=>{const x=(day.prompts||[])[i]||{};return `<div class="erow"><span class="dim num">${i+1}</span><input type="text" id="e-p${i}" data-prompt="${i}" value="${esc(x.t||'')}" placeholder="Name a…" aria-label="Prompt ${i+1}">${gsel(i,x.g)}</div>`}).join('')}
   <h3>Scores</h3><p class="dim sm">Seven scores (10 15 30 60 85 100, or 0 for a miss), or just a day total if that is all you have. Blank means they sat out.</p>
   ${state.players.map(p=>`<div class="srow"><label for="e-s-${p.id}" class="row" style="gap:8px;flex-wrap:nowrap">${av(p,1)}${esc(p.short)}</label><input type="text" id="e-s-${p.id}" data-score="${p.id}" value="${fmtScore(day.scores[p.id])}" placeholder="60 10 30 60 10 30 0" inputmode="numeric"><div class="pv" id="pv-${p.id}"></div></div>`).join('')}
@@ -402,11 +429,13 @@ function recap(c){
 /* ---------- shell ---------- */
 const TABS=[['standings','Standings',vStandings],['report-card','Report card',vReport],['dive-log','Dive log',vLog],['head-to-head','Head to head',vDuel],['log-scores','Log scores',vEnter]];
 function render(){
+  const ks=ui.game==='krillst0ne';state.days=ks?KDAYS:RDAYS;document.body.classList.toggle('ks',ks);
   const tabs=TABS.filter(t=>owner||t[0]!=='log-scores'),ms=months(),tab=tabs.find(t=>'#'+t[0]===location.hash)||tabs[0];
   if(ui.range!=='all'&&!ms.includes(ui.range))ui.range='all';
   const c=ms.length?calc(ui.range):null;
-  const body=tab[0]==='log-scores'?vEnter():(c&&c.list.length?tab[2](c):`<section class="panel"><h2>No dives logged yet</h2><p class="dim">Scores will show up here once the first day is logged.</p></section>`);
-  $('#app').innerHTML=`<header class="head"><div><p>Seven divers · seven prompts a day</p><h1>Krill Fam</h1></div>
+  const body=tab[0]==='log-scores'?vEnter():(c&&c.list.length?tab[2](c):`<section class="panel"><h2>No dives logged yet</h2><p class="dim">${ks?'Krillst0ne scores show up here by themselves as soon as someone finishes a dive.':'Scores will show up here once the first day is logged.'}</p></section>`);
+  $('#app').innerHTML=`<div class="games" role="group" aria-label="Which game"><button type="button" data-game="krillion" class="${ks?'':'on'}" aria-pressed="${!ks}">Krillion</button><button type="button" data-game="krillst0ne" class="${ks?'on':''}" aria-pressed="${ks}">Krillst0ne</button></div>
+  <header class="head"><div><p>${ks?'Our own dive · on trial · tallied separately':'Eight divers · seven prompts a day'}</p><h1>${ks?'krillst<em>0</em>ne':'Krill Fam'}</h1>${ks?'<p><a class="playlink" href="https://jaystone9.github.io/krillion-club/krillst0ne/">Play today\'s dive →</a></p>':''}</div>
   ${ms.length>1?`<select id="month" aria-label="Time range"><option value="all" ${ui.range==='all'?'selected':''}>All time</option>${[...ms].reverse().map(m=>`<option value="${m}" ${m===ui.range?'selected':''}>${monthName(m)}</option>`).join('')}</select>`:''}</header>
   <nav>${tabs.map(t=>`<a href="#${t[0]}" class="${t===tab?'on':''}">${t[1]}</a>`).join('')}</nav>${body}`;
   if(tab[0]==='log-scores')state.players.forEach(p=>pvScore(p.id));
@@ -420,7 +449,7 @@ function countUp(){if(calm())return;const t0=performance.now(),els=[...document.
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),3200)}
 function buildDoc(){
   const json=JSON.stringify(state).replace(/</g,'\\u003c');
-  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Krill Fam</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">\n<style id="css">'+document.getElementById('css').textContent+'</style>\n</head>\n<body>\n<div id="app"></div>\n<div id="toast" role="status"></div>\n<script id="state" type="application/json">'+json+'<\/script>\n<script id="js">'+document.getElementById('js').textContent+'<\/script>\n</body>\n</html>\n';
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Krill Fam</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Silkscreen:wght@700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">\n<style id="css">'+document.getElementById('css').textContent+'</style>\n</head>\n<body>\n<div id="app"></div>\n<div id="toast" role="status"></div>\n<script id="state" type="application/json">'+json+'<\/script>\n<script id="js">'+document.getElementById('js').textContent+'<\/script>\n</body>\n</html>\n';
 }
 function persist(msg){
   if(!owner)return toast('Only Jay can log scores.');
@@ -433,6 +462,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;const d=b.dataset;
   if(d.metric){ui.metric=d.metric;render()}
   else if(d.day){ui.day=d.day;render()}
+  else if(d.act==='spoil'){(ui.spoil=ui.spoil||{})[d.d]=1;render()}
   else if(d.act==='recap'){const txt=recap(calc(ui.range));navigator.clipboard.writeText(txt).then(()=>toast('Recap copied. Paste it in the chat.')).catch(()=>{const p=b.closest('.panel');if(!p.querySelector('#recap-txt'))p.insertAdjacentHTML('beforeend','<textarea id="recap-txt" aria-label="Recap text"></textarea>');p.querySelector('#recap-txt').value=txt;toast('Select the text below and copy it.')})}
   else if(d.act==='import'){const ok=parsed.filter(r=>r.q);if(!ok.length)return toast('Nothing to save yet.');
     const {known}=parsePaste($('#paste').value);for(const k in known)if(EMO[k]==null)state.emo[k]=known[k];
@@ -457,8 +487,27 @@ document.addEventListener('change',e=>{const t=e.target;
   else if(t.dataset.duel){ui[t.dataset.duel]=t.value;render()}
   else if(/^e-g\d$/.test(t.id))t.dataset.manual=1;
 });
+document.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('[data-game]');if(g&&g.dataset.game!==ui.game){ui.game=g.dataset.game;ui.day=null;ui.edate=null;ui.range='all';render()}});
 window.addEventListener('hashchange',render);
 render();
+/* krillst0ne: scores the game posts to the shared store show up under the Krillst0ne toggle, no manual logging.
+   They are kept apart from the real-Krillion days so the two tallies never mix.
+   Dive #1 = Nov 13, 2026. Prompts stay hidden until the day is over or all seven are in, so the log can't spoil a dive. */
+(async()=>{try{
+  const K='sb_publishable_YM9K9YqwnTvz77h7Y-K_cQ_I8HQuWKT',B='https://apjlbzyiszkgwyhpvyiq.supabase.co/rest/v1/',U=B+'krillst0ne_scores?select=dive,player,tiers,answers&order=dive';
+  const rows=await fetch(U,{headers:{apikey:K}}).then(r=>r.json());
+  const unpack=t=>JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(String(t).trim().split('').reverse().join('')),c=>c.charCodeAt(0)))).map(p=>({t:p.q,g:p.g}));
+  const dive=async k=>{try{const r=await fetch(B+'krillst0ne_dives?dive=eq.'+k+'&select=data',{headers:{apikey:K}}).then(r=>r.json());if(Array.isArray(r)&&r[0])return unpack(r[0].data)}catch(e){}
+    try{return unpack(await (await fetch('https://jaystone9.github.io/krillion-club/krillst0ne/dives/'+k+'.dat',{cache:'no-store'})).text())}catch(e){return null}};
+  if(!Array.isArray(rows)||!rows.length)return;
+  const ID={};state.players.forEach(p=>ID[p.name]=p.id);
+  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles'}).format(new Date()),L=Date.UTC(2026,10,13);
+  for(const r of rows){const d=iso(L+(r.dive-1)*864e5),id=ID[r.player];if(!id||!Array.isArray(r.tiers))continue;
+    const day=KDAYS[d]||(KDAYS[d]={prompts:[],scores:{}});day.k=r.dive;day.scores[id]={q:r.tiers,a:Array.isArray(r.answers)?r.answers:null}}
+  /* kp = the dive's prompts, held aside; they only become day.prompts once the dive can no longer be spoiled */
+  for(const d in KDAYS){const day=KDAYS[d];if(!day.k)continue;const pr=await dive(day.k);if(!pr)continue;day.kp=pr;if(d<today||state.players.every(p=>day.scores[p.id]))day.prompts=pr;else day.live=1}
+  render();
+}catch(e){}})();
 })();
 </script>
 </body>
